@@ -1,8 +1,8 @@
 
-export type EventType = {
+export type EventCalendarType = {
   id?: string,
   title: string,
-  date: any,
+  date: Date | string,
   color: 'red' | 'blue' | 'yellow' | 'green' | 'black' | string,
   description?: string,
   lnk?: string,
@@ -15,15 +15,16 @@ export interface CalendarOptions {
   lang?: 'es' | 'en',
   year: number,
   month: number,
+  startDayWeek: 'SUN' | 'MON',
   visibleYear?: boolean,
-  startDayWeek?: number,
-  holiday?: number,
+  holidays?: holyDayType[],
+  events?: EventCalendarType[]
 
 }
 
 
 export interface CalendarProps extends CalendarOptions, CalendarBodyItemActions {
-  events?: EventType[],
+  events?: EventCalendarType[],
   style?: React.CSSProperties
 }
 
@@ -36,8 +37,8 @@ export interface CalendarHeadProps {
   options: CalendarOptions
 }
 
-export interface CalendarDayProps {
-  startDayWeek?: number,
+export interface CalendarDayWeekProps {
+  startDayWeek: 'MON'|'SUN',
   lang: string
 }
 
@@ -46,24 +47,47 @@ export interface CalendarBodyProps extends CalendarBodyItemActions {
 
 }
 export interface CalendarBodyItemProps extends CalendarBodyItemActions {
-  itemDay: ItemDayType,
+  dayOfWeek: DaysOfMonthType,
 }
 
-export interface ItemDayType {
-  time: string,
-  day: string,
-  color?:string,
-  number?: string,
-  events: EventType[]
-}
 
 
 export interface CalendarBodyItemActions {
-  onClick?: (time: string, refEl: any) => void,
-  onMouseOver?: (time: string, refEl: any) => void,
-  onMouseOut?: (time: string, refEl: any) => void,
+  onClick?: (time: Date|string, refEl: any) => void,
+  onMouseOver?: (time:  Date|string, refEl: any) => void,
+  onMouseOut?: (time:  Date|string, refEl: any) => void,
 }
 
 export type LangInterface = {
   [key: 'ru' | 'es' | 'en' | 'de' | 'fr' | 'su' | string]: string[]
+}
+
+
+export type holyDayType = {
+  year: number,
+  month: number,
+  day: number,
+  title: string,
+  description?: string,
+  color: string,
+}
+
+
+export type DaysOfMonthType = {
+  day: number|string,
+  time: Date,
+  dayOfWeek?: string | number,
+  color?:string,
+  isCurrent: boolean,
+  holidays: holyDayType[],
+  events: EventCalendarType[]
+}
+
+
+
+export type MonthCalendarType = {
+  startDayWeek: 'SUN' | 'MON',
+  weeks: DaysOfMonthType[][],
+  countWeek: number,
+  //days: DaysOfMonthType[]
 }

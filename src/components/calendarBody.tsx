@@ -1,29 +1,33 @@
 import React from 'react';
-import { dayInMonth, dayForWeek } from '../services/time';
+import { buildDaysWeekIndex, buildMonthCalendar } from '../utils/Builder';
 import CalendarBodyItem from './calendarBodyItem';
-import { CalendarBodyProps, ItemDayType } from '../types/CalendarTypes';
+import { CalendarBodyProps } from '../types/CalendarTypes';
 
-const CalendarBody = ( { options, onClick, onMouseOver, onMouseOut }: CalendarBodyProps) => {
+const CalendarBody = ({ options, onClick, onMouseOver, onMouseOut }: CalendarBodyProps) => {
 
-  let stopCount = dayInMonth(options.year, options.month);
-  let buildDays = dayForWeek(options.year, options.month, stopCount, options.startDayWeek, options.holiday);
+  //let stopCount = dayInMonth(options.year, options.month);
+  let buildDays = buildMonthCalendar(options);
+  let dayOfWeeks = buildDaysWeekIndex(buildDays.startDayWeek);
 
   return (
-    <div className = 'calendar-body'>
+    <div className='calendar-body'>
       {
-        buildDays.map((week:any, count:any) => {
-          return (
-            <div style = {{ display: 'flex' }} key = { count } className = 'calendar-body-row'>
-              { week.map((itemDay: ItemDayType) => {
-                return (
-                  <CalendarBodyItem key={itemDay.day} itemDay={itemDay} onClick = { onClick } onMouseOver = { onMouseOver } onMouseOut = { onMouseOut } />
-                )
-              }) }
-            </div>
-          )
-        })
+        buildDays.weeks.map((week, count: number) => (
+          <div style={{ display: 'flex' }} key={count} className='calendar-body-row'>
+
+            { week.map((dayOfWeek, key: number) => (
+
+                <div className='day' key={key}>
+                  <CalendarBodyItem dayOfWeek={dayOfWeek} onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} />
+                </div>
+            ))
+            }
+
+          </div>
+        ))
       }
     </div>
+ 
   )
 }
 

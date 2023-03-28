@@ -1,6 +1,6 @@
 import { LangInterface } from "../types/CalendarTypes";
 
-export const days: LangInterface = {
+export const daysOfWeek: LangInterface = {
   "ru": [
     "Пн",
     "Вт",

@@ -1,72 +1,75 @@
-let holiday = [
+const year = 2023;
+const newYearText = 'В этом году новогодние каникулы продлятся 9 дней.';
+
+let holidays = [
   {
-    year: 2022,
+    year,
     month: 0,
     day: 1,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 2,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 3,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 4,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 5,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 6,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 7,
     class: '',
@@ -77,29 +80,18 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 0,
     day: 8,
     class: '',
     hint: [
       {
         title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
+        desc: newYearText
       }
     ]
   }, {
-    year: 2022,
-    month: 0,
-    day: 9,
-    class: '',
-    hint: [
-      {
-        title: 'Новогодние каникулы',
-        desc: 'В этом году новогодние каникулы будут долгими и продлятся 10 дней, считая 31 декабря 2021.'
-      }
-    ]
-  }, {
-    year: 2022,
+    year,
     month: 1,
     day: 23,
     class: '',
@@ -110,29 +102,18 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
-    month: 2,
-    day: 5,
-    class: 'workDay',
-    hint: [
-      {
-        title: 'Рабочий день',
-        desc: 'Этот день будет рабочим, зато понедельник будет выходным'
-      }
-    ]
-  }, {
-    year: 2022,
-    month: 2,
-    day: 7,
+    year,
+    month: 1,
+    day: 24,
     class: '',
     hint: [
       {
-        title: '8 марта',
-        desc: 'Перенос выходного дня с субботы 5 марта на понедельник 7 марта.'
+        title: 'День защитника отечества',
+        desc: 'Этот выходной переносится с 1 января.'
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 2,
     day: 8,
     class: '',
@@ -143,7 +124,7 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 4,
     day: 1,
     class: '',
@@ -154,20 +135,9 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 4,
-    day: 2,
-    class: '',
-    hint: [
-      {
-        title: 'Выходной день',
-        desc: 'Так как 1 мая выходит на субботу, выходной переноситчя на понедельник.'
-      }
-    ]
-  }, {
-    year: 2022,
-    month: 4,
-    day: 3,
+    day: 8,
     class: '',
     hint: [
       {
@@ -176,7 +146,7 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
+    year,
     month: 4,
     day: 9,
     class: '',
@@ -187,29 +157,7 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
-    month: 4,
-    day: 10,
-    class: '',
-    hint: [
-      {
-        title: '9 мая',
-        desc: 'Выходной день.'
-      }
-    ]
-  }, {
-    year: 2022,
-    month: 4,
-    day: 10,
-    class: '',
-    hint: [
-      {
-        title: 'Выходной день',
-        desc: 'Выходной день.'
-      }
-    ]
-  }, {
-    year: 2022,
+    year,
     month: 5,
     day: 12,
     class: '',
@@ -220,18 +168,7 @@ let holiday = [
       }
     ]
   }, {
-    year: 2022,
-    month: 5,
-    day: 13,
-    class: '',
-    hint: [
-      {
-        title: 'Выходной день',
-        desc: 'Так как в этом году день России выходит на воскресенье , выходной переносится на понедельник.'
-      }
-    ]
-  }, {
-    year: 2022,
+    year,
     month: 10,
     day: 4,
     class: '',
@@ -244,4 +181,4 @@ let holiday = [
   },
 ];
 
-export default holiday;
+export default holidays;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Calendar from '../index';
-import holiday from '../holidays/holiday';
+import holidays from '../holidayss/holidays';
 
 import '../../lib/styles/calendar.css';
 import './pages/exampleCalendar.scss';
@@ -40,7 +40,7 @@ const ExampleCalendar = () => {
         month = { month }
         visibleYear = { true }
         startDayWeek = { dayWeek }
-        holiday = { holiday }
+        holidays = { holidays }
       />
       </div>
     </div>

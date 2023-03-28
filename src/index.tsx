@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import CalendarHead from './components/calendarHead.js';
-import CalendarDay from './components/calendarDay.js';
+import CalendarDay from './components/calendarDayWeek.js';
 import CalendarBody from './components/calendarBody.js';
 import { CalendarOptions, CalendarProps } from './types/CalendarTypes.js';
 
-const Calender = ({
+const EventsCalendar = ({
   lang,
   year,
   month,
   visibleYear,
   startDayWeek,
-  holiday,
+  holidays,
   style,
   onClick,
   onMouseOver,
@@ -22,8 +22,8 @@ const Calender = ({
     month: month ?? new Date().getMonth(),
     lang: lang ?? 'es',
     visibleYear,
-    startDayWeek,
-    holiday,
+    startDayWeek: startDayWeek ?? 'MON',
+    holidays,
   });
 
   useEffect(() => {
@@ -80,4 +80,4 @@ return (
 )
 }
 
-export default Calender;
+export default EventsCalendar;
