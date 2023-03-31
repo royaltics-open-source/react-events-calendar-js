@@ -13,8 +13,8 @@ export type EventCalendarType = {
 
 export interface CalendarOptions {
   lang?: 'es' | 'en',
-  year: number,
-  month: number,
+  year?: number,
+  month?: number,
   startDayWeek: 'SUN' | 'MON',
   visibleYear?: boolean,
   holidays?: holyDayType[],
