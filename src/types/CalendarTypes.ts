@@ -35,6 +35,12 @@ export interface CalendarProps extends CalendarOptions, CalendarBodyItemActions 
 
 export interface CalendarHeadProps {
   options: CalendarOptions
+  handlers: {
+    backMonth: VoidFunction, 
+    backYear: VoidFunction,
+     nextMonth: VoidFunction, 
+      nextYear: VoidFunction, 
+  }
 }
 
 export interface CalendarDayWeekProps {

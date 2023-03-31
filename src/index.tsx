@@ -11,6 +11,7 @@ const EventsCalendar = ({
   visibleYear,
   startDayWeek,
   holidays,
+  events,
   style,
   onClick,
   onMouseOver,
@@ -24,6 +25,7 @@ const EventsCalendar = ({
     visibleYear,
     startDayWeek: startDayWeek ?? 'MON',
     holidays,
+    events
   });
 
   useEffect(() => {
@@ -36,11 +38,11 @@ const EventsCalendar = ({
   }, [])
 
   const backYear = () => {
-    
+
   }
 
   const nextYear = () => {
-    
+
   }
 
   const backMonth = () => {
@@ -53,31 +55,22 @@ const EventsCalendar = ({
 
   }
 
-const nextMonth = () => {
-  setOptions((prev) => {
-    return {
-      ...prev,
-      month: prev.month > 11 ? prev.month + 1 : 12,
-    }
-  })
-}
+  const nextMonth = () => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        month: prev.month > 11 ? prev.month + 1 : 12,
+      }
+    })
+  }
 
-return (
-  <div className='exampleCalendar'>
-    <button className='mdc-button' onClick={backMonth}>&gt;</button>
-    <button className='mdc-button' onClick={backYear}>&lt;</button>
-    <button className='mdc-button' >{options.month} / {options.year}</button>
-    <button className='mdc-button' onClick={nextYear}>&lt;</button>
-    <button className='mdc-button' onClick={nextMonth}>&lt;</button>
-    <div className='exampleCalendar-wrap'>
-      <div className={`calendar`} style={style}>
-        <CalendarHead options={options} />
-        <CalendarDay startDayWeek={startDayWeek} lang={options.lang??'es'} />
-        <CalendarBody onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} options={options} />
-      </div>
+  return (
+    <div id='events-calendar' style={style}>
+          <CalendarHead options={options} handlers={{backMonth, backYear, nextMonth, nextYear}} />
+          <CalendarDay startDayWeek={startDayWeek} lang={options.lang ?? 'es'} />
+          <CalendarBody onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} options={options} />
     </div>
-  </div>
-)
+  )
 }
 
 export default EventsCalendar;

@@ -5,22 +5,22 @@ const CalendarBodyItem = ({ dayOfWeek, onClick, onMouseOver, onMouseOut }: Calen
 	let selfRef = useRef<any>(null);
 
 	return (
-		<div style={{ width: '14.28571428571429%' }} className={dayOfWeek.color}
+		<div className={'day ' +dayOfWeek.color}
 			onClick={() => onClick ? onClick(dayOfWeek.time, selfRef) : null}
 			onMouseOver={() => onMouseOver ? onMouseOver(dayOfWeek.time, selfRef) : null}
 			onMouseOut={() => onMouseOut ? onMouseOut(dayOfWeek.time, selfRef) : null}
 			ref={selfRef}>
-			<div className='calendar-body-day'>
+			<div className='evtcalDate'>
 				{dayOfWeek.day}
 			</div>
 			{dayOfWeek.events.length
 				? dayOfWeek.events.map((event, count) => {
 					return (
-						<div className={'calendar-body-hint ' + event.color } key={count}>
-							<div className='calendar-body-title'>
+						<div className={'evtcalDateContainer ' + event.color } key={count}>
+							<div className='evtCalDateTitle'>
 								{event.title}
 							</div>
-							<div className='calendar-body-desc'>
+							<div className='evtcalDateDesc'>
 								{event.description}
 							</div>
 						</div>

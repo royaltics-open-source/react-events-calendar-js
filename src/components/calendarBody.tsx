@@ -1,5 +1,5 @@
 import React from 'react';
-import { buildDaysWeekIndex, buildMonthCalendar } from '../utils/Builder';
+import { buildMonthCalendar } from '../utils/Builder';
 import CalendarBodyItem from './calendarBodyItem';
 import { CalendarBodyProps } from '../types/CalendarTypes';
 
@@ -7,19 +7,16 @@ const CalendarBody = ({ options, onClick, onMouseOver, onMouseOut }: CalendarBod
 
   //let stopCount = dayInMonth(options.year, options.month);
   let buildDays = buildMonthCalendar(options);
-  let dayOfWeeks = buildDaysWeekIndex(buildDays.startDayWeek);
 
   return (
-    <div className='calendar-body'>
+    <div className='evtcalBody'>
       {
         buildDays.weeks.map((week, count: number) => (
-          <div style={{ display: 'flex' }} key={count} className='calendar-body-row'>
+          <div key={count} className='evtcalRow'>
 
             { week.map((dayOfWeek, key: number) => (
 
-                <div className='day' key={key}>
-                  <CalendarBodyItem dayOfWeek={dayOfWeek} onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} />
-                </div>
+                  <CalendarBodyItem  key={key} dayOfWeek={dayOfWeek} onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} />
             ))
             }
 

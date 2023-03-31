@@ -33,7 +33,7 @@ export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek
 
 	//generate weeks
 	for (let week = 0; week < monthCalendar.countWeek; week++) {
-		let days: DaysOfMonthType[] = []
+		let days: DaysOfMonthType[] = [] 
 
 		//loop of index Days of weeks
 		for (let _indexDays of _dayOfWeeks) {

@@ -6,11 +6,11 @@ const calendarDayWeek = ( props: CalendarDayWeekProps ) => {
   let daysOfWeekSort = buildDaysWeek(props);
  
   return (
-    <div style = {{ display: 'flex' }} className = 'calendar-day'>
+    <div className = 'evtcalDay'>
       {
         daysOfWeekSort.map((day:any, count:number) => {
           return (
-            <div style = {{ width: '14.28571428571429%' }} className = 'calendar-day-col' key = { count }>
+            <div style = {{ width: '14.28571428571429%' }} className = 'evtcalDayTitle' key = { count }>
               { day }
             </div>
           )
