@@ -1,17 +1,17 @@
-export function weekCountFromSunday(year:number, month: number) {
-    // month_number is in the range 1..12
-    const firstOfMonth = new Date(year, month-1, 1);
-    const lastOfMonth = new Date(year, month, 0);
-    const used = firstOfMonth.getDay() + lastOfMonth.getDate();
-    return Math.ceil( used / 7);
+export function weekCountFromSunday(year: number, month: number) {
+	// month_number is in the range 1..12
+	const firstOfMonth = new Date(year, month - 1, 1);
+	const lastOfMonth = new Date(year, month, 0);
+	const used = firstOfMonth.getDay() + lastOfMonth.getDate();
+	return Math.ceil(used / 7);
 }
 
-export function weekCountFromMonday(year:number, month: number) {
-    // month_number is in the range 1..12
-    const firstOfMonth = new Date(year, month-1, 1);
-    const lastOfMonth = new Date(year, month, 0);
-    const used = firstOfMonth.getDay() + 6 + lastOfMonth.getDate();
-    return Math.ceil( used / 7);
+export function weekCountFromMonday(year: number, month: number) {
+	// month_number is in the range 1..12
+	const firstOfMonth = new Date(year, month - 1, 1);
+	const lastOfMonth = new Date(year, month, 0);
+	const used = firstOfMonth.getDay() + 6 + lastOfMonth.getDate();
+	return Math.ceil(used / 7);
 }
 
 
@@ -37,4 +37,10 @@ export const numberDayInYear = (year: any, x: any) => {
 	let curTime = new Date(Number(x));
 	let lastYear = new Date((year - 1), 11, 31);
 	return (curTime.getTime() - lastYear.getTime()) / 86400000;
+}
+
+
+export const parseDate = (date: string | Date) : string => {
+	const _date  = date instanceof Date ? date : new Date(date);
+	return _date.getHours()  + ":" + _date.getMinutes();
 }

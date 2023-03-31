@@ -35,27 +35,37 @@ export interface CalendarProps extends CalendarOptions, CalendarBodyItemActions 
 
 export interface CalendarHeadProps {
   options: CalendarOptions
+  setOptions: React.Dispatch<React.SetStateAction<CalendarOptions>>
 }
 
 export interface CalendarDayWeekProps {
-  startDayWeek: 'MON'|'SUN',
+  startDayWeek: 'MON' | 'SUN',
   lang: string
+}
+
+export interface CalendarShowEventProps {
+  seletedEvent: EventCalendarType,
+
 }
 
 export interface CalendarBodyProps extends CalendarBodyItemActions {
   options: CalendarOptions,
-
+  setSeletedEvent: React.Dispatch<React.SetStateAction<EventCalendarType>>
 }
+
 export interface CalendarBodyItemProps extends CalendarBodyItemActions {
   dayOfWeek: DaysOfMonthType,
+  className?: string,
+
 }
 
 
 
 export interface CalendarBodyItemActions {
-  onClick?: (time: Date|string, refEl: any) => void,
-  onMouseOver?: (time:  Date|string, refEl: any) => void,
-  onMouseOut?: (time:  Date|string, refEl: any) => void,
+  onClickDay?: (time: Date | string, refEl: React.MutableRefObject<HTMLDivElement>) => void,
+  //OnMouse Over with css
+  // onMouseOverEvent?: (event: EventCalendarType, refEl: React.MutableRefObject<HTMLDivElement>) => void,
+  onClickEvent?: (event: EventCalendarType, refEl: React.MutableRefObject<HTMLDivElement>) => void,
 }
 
 export type LangInterface = {
@@ -74,10 +84,10 @@ export type holyDayType = {
 
 
 export type DaysOfMonthType = {
-  day: number|string,
+  day: number | string,
   time: Date,
   dayOfWeek?: string | number,
-  color?:string,
+  color?: string,
   isCurrent: boolean,
   holidays: holyDayType[],
   events: EventCalendarType[]

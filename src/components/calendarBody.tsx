@@ -1,24 +1,36 @@
 import React from 'react';
-import {  buildMonthCalendar } from '../utils/Builder';
+import { buildMonthCalendar } from '../utils/Builder';
 import CalendarBodyItem from './calendarBodyItem';
-import { CalendarBodyProps } from '../types/CalendarTypes';
+import { CalendarBodyProps, EventCalendarType } from '../types/CalendarTypes';
 
-const CalendarBody = ({ options, onClick, onMouseOver, onMouseOut }: CalendarBodyProps) => {
+const CalendarBody = ({ options, onClickEvent,  onClickDay, setSeletedEvent }: CalendarBodyProps) => {
 
-  //let stopCount = dayInMonth(options.year, options.month);
   let buildDays = buildMonthCalendar(options);
 
+ /* const _onMouseOverEvent = (event: EventCalendarType, ref: React.MutableRefObject<HTMLDivElement>) => {
+    if (onMouseOverEvent) return onMouseOverEvent(event, ref);
+    ref.current.classList.add("hover")
+  }
+*/
+  const _onClickEvent = (event: EventCalendarType, ref: React.MutableRefObject<HTMLDivElement>) => {
+    if (onClickEvent) return onClickEvent(event, ref);
+    setSeletedEvent(event);
+  }
+
   return (
-    <div className='calendar-body'>
+    <div className='evtcalBody'>
       {
         buildDays.weeks.map((week, count: number) => (
-          <div style={{ display: 'flex' }} key={count} className='calendar-body-row'>
+          <div key={count} className='evtcalRow'>
 
-            { week.map((dayOfWeek, key: number) => (
-
-                <div className='day' key={key}>
-                  <CalendarBodyItem dayOfWeek={dayOfWeek} onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} />
-                </div>
+            {week.map((dayOfWeek, key: number) => (
+              <CalendarBodyItem
+                key={key}
+                dayOfWeek={dayOfWeek}
+                onClickEvent={_onClickEvent}
+                //onMouseOverEvent={_onMouseOverEvent}
+                onClickDay={onClickDay}
+              />
             ))
             }
 
@@ -26,7 +38,7 @@ const CalendarBody = ({ options, onClick, onMouseOver, onMouseOut }: CalendarBod
         ))
       }
     </div>
- 
+
   )
 }
 

@@ -20,6 +20,7 @@ export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek
 		countWeek: startDayWeek === 'MON' ? weekCountFromSunday(year, month) : weekCountFromMonday(year, month),
 		weeks: [[]],
 	}
+
 	let _lastDayOfMonth = new Date(year, month + 1, 0).getDate();
 	let _currentDate = getCurrentDate();
 	let _holidayOfMonth = Array.isArray(holidays) ? holidays.filter((hol) => hol.month == month) : [] //get Filtered HoliDays of Month
@@ -39,19 +40,19 @@ export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek
 		for (let _indexDays of _dayOfWeeks) {
 
 			let thisDate = new Date(year, month, nextDay);
-				thisDate.setHours(0, 0, 0, 0)
+			thisDate.setHours(0, 0, 0, 0)
 
 			//Days out of the month
-			if(nextDay<0 || nextDay > _lastDayOfMonth){
+			if (nextDay <= 0 || nextDay > _lastDayOfMonth) {
 				days.push({
 					day: '',
-					time:thisDate,
+					time: thisDate,
 					isCurrent: false,
 					holidays: [],
 					events: []
 				})
-			}else{
-				
+			} else {
+
 				days.push({
 					day: nextDay,
 					time: thisDate,

@@ -1,32 +1,39 @@
 import React, { useRef } from 'react';
 import { CalendarBodyItemProps } from '../types/CalendarTypes';
+import { parseDate } from '../utils/Utils';
 
-const CalendarBodyItem = ({ dayOfWeek, onClick, onMouseOver, onMouseOut }: CalendarBodyItemProps) => {
+const CalendarBodyItem = ({ dayOfWeek, onClickDay, onClickEvent }: CalendarBodyItemProps) => {
 	let selfRef = useRef<any>(null);
+	let eventRef = useRef<any>(null);
 
 	return (
-		<div style={{ width: '14.28571428571429%' }} className={dayOfWeek.color}
-			onClick={() => onClick ? onClick(dayOfWeek.time, selfRef) : null}
-			onMouseOver={() => onMouseOver ? onMouseOver(dayOfWeek.time, selfRef) : null}
-			onMouseOut={() => onMouseOut ? onMouseOut(dayOfWeek.time, selfRef) : null}
+		<div className={`day ${dayOfWeek.color ?? ''}`}
+			onClick={() => onClickDay ? onClickDay(dayOfWeek.time, selfRef) : null}
 			ref={selfRef}>
-			<div className='calendar-body-day'>
+
+			<div className='evtcalDate'>
 				{dayOfWeek.day}
 			</div>
-			{dayOfWeek.events.length
-				? dayOfWeek.events.map((event, count) => {
-					return (
-						<div className={'calendar-body-hint ' + event.color } key={count}>
-							<div className='calendar-body-title'>
-								{event.title}
-							</div>
-							<div className='calendar-body-desc'>
-								{event.description}
-							</div>
+
+			{dayOfWeek.events.length ? dayOfWeek.events.map((event, count) => {
+				return (
+					<div className={'evtcalDateContainer ' + event.color} key={count}
+						//onMouseOver={() => onMouseOverEvent ? onMouseOverEvent(event, eventRef) : null}
+						//onMouseOut={() => onMouseOverEvent ? onMouseOverEvent(event, eventRef) : null}
+						onClick={() => onClickEvent ? onClickEvent(event, eventRef) : null}
+						ref={eventRef}
+					>
+						<div className='evtCalDateTitle'>
+							<strong>{event.title}</strong>
+							<span className='time'>{parseDate(event.date)}</span>
 						</div>
-					)
-				})
-				: null
+						<div className='evtcalDateDesc'>
+							{event.description}
+						</div>
+					</div>
+				)
+			})
+			: null
 			}
 		</div>
 	)

@@ -38,11 +38,11 @@ export const months : LangInterface = {
     "Mayo",
     "Junio",
     "Julio",
-    "Augosto",
+    "Agosto",
     "Septiembre",
-    "Octobre",
+    "Octubre",
     "Noviembre",
-    "Deciembre"
+    "Diciembre"
   ],
   "de": [
     "Januar",
