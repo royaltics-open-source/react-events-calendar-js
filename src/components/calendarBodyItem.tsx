@@ -7,7 +7,8 @@ const CalendarBodyItem = ({ dayOfWeek, onClickDay, onClickEvent }: CalendarBodyI
 	let eventRef = useRef<any>(null);
 
 	return (
-		<div className={`day ${dayOfWeek.color ?? ''}`}
+
+		<div className={`day ${dayOfWeek.isToday ? 'today' : ''} ${dayOfWeek.color ?? ''}`}
 			onClick={() => onClickDay ? onClickDay(dayOfWeek.time, selfRef) : null}
 			ref={selfRef}>
 
@@ -33,7 +34,7 @@ const CalendarBodyItem = ({ dayOfWeek, onClickDay, onClickEvent }: CalendarBodyI
 					</div>
 				)
 			})
-			: null
+				: null
 			}
 		</div>
 	)

@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background: $bgHeader; 
+  background: $bgHeader;
 }
 
 .evtcalButton {
@@ -31,8 +31,10 @@
 .evtcalDay {
   display: flex;
   background: $bgHeaderDays;
+
   .evtcalDayTitle {
     font-size: 1rem;
+    user-select: none;
   }
 }
 
@@ -61,6 +63,10 @@
   background: $bgDay;
   gap: 0.25rem;
 
+}
+
+.evtcalRow .today{
+  background: $blue;
 }
 
 .evtcalRow .day .evtcalDate {

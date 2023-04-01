@@ -1,4 +1,24 @@
 
+export interface CalendarBodyItemActions {
+  onClickDay?: (time: Date | string, refEl: React.MutableRefObject<HTMLDivElement>) => void,
+  //OnMouse Over with css
+  // onMouseOverEvent?: (event: EventCalendarType, refEl: React.MutableRefObject<HTMLDivElement>) => void,
+  onClickEvent?: (event: EventCalendarType, refEl: React.MutableRefObject<HTMLDivElement>) => void,
+}
+
+export interface CalendarProps extends CalendarBodyItemActions {
+  lang?: CalendarOptions["lang"],
+  style?: React.CSSProperties
+  year?: number,
+  monthIndex?: number,
+  startDayWeek?: CalendarOptions["startDayWeek"],
+  visibleYear?: boolean,
+  holidays?: holyDayType[],
+  events?: EventCalendarType[],
+
+}
+
+
 export type EventCalendarType = {
   id?: string,
   title: string,
@@ -14,32 +34,18 @@ export type EventCalendarType = {
 export interface CalendarOptions {
   lang?: 'es' | 'en',
   year: number,
-  month: number,
+  monthIndex: number,
   startDayWeek: 'SUN' | 'MON',
   visibleYear?: boolean,
-  holidays?: holyDayType[],
-  events?: EventCalendarType[]
-
 }
 
-
-export interface CalendarProps extends  CalendarBodyItemActions {
-  lang?: CalendarOptions["lang"],
-  style?: React.CSSProperties
-  year?: number,
-  month?: number,
-  startDayWeek?: CalendarOptions["startDayWeek"],
-  visibleYear?: boolean,
+export interface BuilderProps extends CalendarOptions {
   holidays?: holyDayType[],
   events?: EventCalendarType[],
-
 }
-
-
 
 
 //CalendarHeadProps
-
 export interface CalendarHeadProps {
   options: CalendarOptions
   setOptions: React.Dispatch<React.SetStateAction<CalendarOptions>>
@@ -57,6 +63,8 @@ export interface CalendarShowEventProps {
 
 export interface CalendarBodyProps extends CalendarBodyItemActions {
   options: CalendarOptions,
+  holidays?: holyDayType[],
+  events?: EventCalendarType[]
   setSeletedEvent: React.Dispatch<React.SetStateAction<EventCalendarType>>
 }
 
@@ -66,14 +74,6 @@ export interface CalendarBodyItemProps extends CalendarBodyItemActions {
 
 }
 
-
-
-export interface CalendarBodyItemActions {
-  onClickDay?: (time: Date | string, refEl: React.MutableRefObject<HTMLDivElement>) => void,
-  //OnMouse Over with css
-  // onMouseOverEvent?: (event: EventCalendarType, refEl: React.MutableRefObject<HTMLDivElement>) => void,
-  onClickEvent?: (event: EventCalendarType, refEl: React.MutableRefObject<HTMLDivElement>) => void,
-}
 
 export type LangInterface = {
   [key: 'ru' | 'es' | 'en' | 'de' | 'fr' | 'su' | string]: string[]
@@ -89,17 +89,15 @@ export type holyDayType = {
   color: string,
 }
 
-
 export type DaysOfMonthType = {
   day: number | string,
   time: Date,
   dayOfWeek?: string | number,
   color?: string,
-  isCurrent: boolean,
+  isToday: boolean,
   holidays: holyDayType[],
   events: EventCalendarType[]
 }
-
 
 
 export type MonthCalendarType = {

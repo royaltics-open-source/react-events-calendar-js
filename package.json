@@ -1,6 +1,6 @@
 {
   "name": "react-events-calendar-js",
-  "version": "0.0.3",
+  "version": "0.1.10",
   "description": "React Component for Events Calendar",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -31,10 +31,11 @@
     "react",
     "reactjs",
     "calendar",
-    "production calendar",
+    "events",
+    "calendar",
     "events calendar",
     "react calendar",
-    "react production calendar"
+    "react calendar"
   ],
   "engines": {
     "node": ">=10"

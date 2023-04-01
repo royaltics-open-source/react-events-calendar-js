@@ -1,5 +1,5 @@
 import { daysOfWeek } from "../langs/days";
-import { CalendarDayWeekProps, CalendarOptions, DaysOfMonthType, MonthCalendarType } from "../types/CalendarTypes";
+import { BuilderProps, CalendarDayWeekProps, DaysOfMonthType, MonthCalendarType } from "../types/CalendarTypes";
 import { equalsDays, equalsMonth, getCurrentDate, weekCountFromMonday, weekCountFromSunday } from "./Utils";
 
 
@@ -13,24 +13,27 @@ export const buildDaysWeekIndex = (startDayWeek: CalendarDayWeekProps["startDayW
 }
 
 
-export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek }: CalendarOptions): MonthCalendarType => {
-	//let days: any = [[]];
+export const buildMonthCalendar = ({ year, monthIndex, events, holidays, startDayWeek }: BuilderProps): MonthCalendarType => {
+	let _firstDayOfMonth = new Date(year, monthIndex, 1);
+	let _lastDayOfMonth = new Date(year, monthIndex + 1, 0);
+	let _currentDate = getCurrentDate();
+
 	const monthCalendar: MonthCalendarType = {
 		startDayWeek,
-		countWeek: startDayWeek === 'MON' ? weekCountFromSunday(year, month) : weekCountFromMonday(year, month),
+		countWeek: startDayWeek === 'MON' ? weekCountFromMonday(_firstDayOfMonth, _lastDayOfMonth) : weekCountFromSunday(_firstDayOfMonth, _lastDayOfMonth),
 		weeks: [[]],
 	}
 
-	let _lastDayOfMonth = new Date(year, month + 1, 0).getDate();
-	let _currentDate = getCurrentDate();
-	let _holidayOfMonth = Array.isArray(holidays) ? holidays.filter((hol) => hol.month == month) : [] //get Filtered HoliDays of Month
-	let _eventsOfMonth = Array.isArray(events) ? events.filter((event) => equalsMonth(event.date, new Date(year, month, 1))) : [] //get Filtered HoliDays of Month
-	let _dayOfWeeks = buildDaysWeekIndex(startDayWeek);
-	let _firstDayOfMonth = new Date(year, month, 1);
-	const _startDayWeekIndex = startDayWeek === 'MON' ? 0 : 7;
-	var monthFirstDayPosition = ((7 + _firstDayOfMonth.getDay() - (_startDayWeekIndex)) % 7) - 1
 
+	const _holidayOfMonth = Array.isArray(holidays) ? holidays.filter((hol) => hol.month == (monthIndex + 1)) : [] //get Filtered HoliDays of Month
+	const _eventsOfMonth = Array.isArray(events) ? events.filter((event) => equalsMonth(event.date, new Date(year, monthIndex, 1))) : [] //get Filtered Events of Month
+	const _dayOfWeeks = buildDaysWeekIndex(startDayWeek);
+	const _startDayWeekIndex = startDayWeek === 'MON' ? 0 : 7;
+
+	const monthFirstDayPosition = ((7 + _firstDayOfMonth.getDay() - (_startDayWeekIndex)) % 7) - 1
 	let nextDay = 1 - monthFirstDayPosition;
+	let thisDateMonth = new Date(year, monthIndex, 1);
+	thisDateMonth.setHours(0, 0, 0, 0)
 
 	//generate weeks
 	for (let week = 0; week < monthCalendar.countWeek; week++) {
@@ -39,29 +42,29 @@ export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek
 		//loop of index Days of weeks
 		for (let _indexDays of _dayOfWeeks) {
 
-			let thisDate = new Date(year, month, nextDay);
-			thisDate.setHours(0, 0, 0, 0)
-			console.log(nextDay, monthFirstDayPosition)
-
 			//Days out of the month
-			if (nextDay <= 0 || nextDay > _lastDayOfMonth) {
+			if (nextDay <= 0 || nextDay > _lastDayOfMonth.getDate()) {
 				days.push({
 					day: '',
-					time: thisDate,
-					isCurrent: false,
+					time: thisDateMonth,
+					isToday: false,
 					holidays: [],
 					events: []
 				})
 			} else {
 
+				thisDateMonth.setDate(nextDay)
+
 				days.push({
 					day: nextDay,
-					time: thisDate,
-					isCurrent: thisDate.getTime() === _currentDate,
+					time: thisDateMonth,
+					isToday: thisDateMonth.getTime() === _currentDate.getTime(),
 					holidays: _holidayOfMonth.filter(hol => hol.day === nextDay),
-					events: _eventsOfMonth.filter(event => equalsDays(event.date, thisDate))
+					events: _eventsOfMonth.filter(event => equalsDays(event.date, thisDateMonth))
 				})
+
 			}
+
 			nextDay++;
 		}
 
