@@ -28,7 +28,7 @@ export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek
 	let _dayOfWeeks = buildDaysWeekIndex(startDayWeek);
 	let _firstDayOfMonth = new Date(year, month, 1);
 	const _startDayWeekIndex = startDayWeek === 'MON' ? 0 : 7;
-	var monthFirstDayPosition = (7 + _firstDayOfMonth.getDay() - (_startDayWeekIndex)) % 7
+	var monthFirstDayPosition = ((7 + _firstDayOfMonth.getDay() - (_startDayWeekIndex)) % 7) - 1
 
 	let nextDay = 1 - monthFirstDayPosition;
 
@@ -41,6 +41,7 @@ export const buildMonthCalendar = ({ year, month, events, holidays, startDayWeek
 
 			let thisDate = new Date(year, month, nextDay);
 			thisDate.setHours(0, 0, 0, 0)
+			console.log(nextDay, monthFirstDayPosition)
 
 			//Days out of the month
 			if (nextDay <= 0 || nextDay > _lastDayOfMonth) {

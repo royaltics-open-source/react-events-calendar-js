@@ -13,8 +13,8 @@ export type EventCalendarType = {
 
 export interface CalendarOptions {
   lang?: 'es' | 'en',
-  year?: number,
-  month?: number,
+  year: number,
+  month: number,
   startDayWeek: 'SUN' | 'MON',
   visibleYear?: boolean,
   holidays?: holyDayType[],
@@ -23,9 +23,16 @@ export interface CalendarOptions {
 }
 
 
-export interface CalendarProps extends CalendarOptions, CalendarBodyItemActions {
-  events?: EventCalendarType[],
+export interface CalendarProps extends  CalendarBodyItemActions {
+  lang?: CalendarOptions["lang"],
   style?: React.CSSProperties
+  year?: number,
+  month?: number,
+  startDayWeek?: CalendarOptions["startDayWeek"],
+  visibleYear?: boolean,
+  holidays?: holyDayType[],
+  events?: EventCalendarType[],
+
 }
 
 

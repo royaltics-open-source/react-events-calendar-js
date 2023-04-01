@@ -24,9 +24,9 @@ const EventsCalendar = ({ lang, year, month, visibleYear, startDayWeek, holidays
     <div id='events-calendar' style={style}>
       {seletedEvent && <CalendarShowEvent seletedEvent={seletedEvent} />}
       <CalendarHead options={options} setOptions={setOptions} />
-      <CalendarDay startDayWeek={startDayWeek} lang={options.lang ?? 'es'} />
-      <CalendarBody onClickDay={onClickDay} onClickEvent={onClickEvent} setSeletedEvent={setSeletedEvent} options={options} 
-        //onMouseOverEvent={onMouseOverEvent} 
+      <CalendarDay startDayWeek={startDayWeek ?? 'MON'} lang={options.lang ?? 'es'} />
+      <CalendarBody onClickDay={onClickDay} onClickEvent={onClickEvent} setSeletedEvent={setSeletedEvent} options={options}
+      //onMouseOverEvent={onMouseOverEvent} 
       />
     </div>
   )

@@ -15,6 +15,10 @@ npm install --save react-events-calendar-js
 ```tsx
 import logo from './logo.svg';
 import './styles/_theme_default.css';
+//import "react-events-calendar-js/dist/light.css";
+//import "react-events-calendar-js/dist/dark.css";
+//import "react-events-calendar-js/dist/default.css";
+
 import EventsCalendar from 'react-events-calendar-js'
 
 function App() {
