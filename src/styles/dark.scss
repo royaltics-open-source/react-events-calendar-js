@@ -1,2 +1,2 @@
-@import './variables/dark_variables';
-@import 'default'; 
+@use './variables/dark_variables' as *;
+@use 'default' as *;

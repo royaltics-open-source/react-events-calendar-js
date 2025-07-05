@@ -1,4 +1,4 @@
-@import './variables/default_variables';
+@use './variables/dark_variables' as *;
 
 #events-calendar * {
   box-sizing: border-box;

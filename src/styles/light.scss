@@ -1,2 +1,2 @@
-@import './variables/light_variables';
-@import 'default'; 
+@use './variables/light_variables' as *;
+@use 'default' as *;
